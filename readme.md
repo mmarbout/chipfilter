@@ -97,7 +97,7 @@ and the little perl script to generate the coverage for each genomes
 
 project=chipfilter_metagenomic/
 
-for lib in $(ls "$project"/FastQ/ | sed 's/_R/ /' | awk '{print $1}' | sort -u)
+for lib in $(ls "$project"/FastQ/ | sed 's/_R/ /' | grep "cleaned" | awk '{print $1}' | sort -u)
 do
     reads_for=chipfilter_metagenomic/FastQ/"$library"_cleaned_R1.fq.gz
     reads_rev=chipfilter_metagenomic/FastQ/"$library"_cleaned_R2.fq.gz
