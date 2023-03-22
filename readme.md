@@ -33,7 +33,7 @@ we can now move the different FastQ and FastA files to this directory
 mv *.gz  chipfilter_metagenomic/FastQ/
 mv *.fa  chipfilter_metagenomic/FastA/
 ```
-and also a perl script mandatory for calculating the coverage
+and also a perl script mandatory for calculating the coverage. You can directly download it from the github.
 
 ```sh
 mv jgi_summarize_bam_contig_depths chipfilter_metagenomic/
