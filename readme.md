@@ -65,7 +65,7 @@ do
     out_fold=chipfilter_metagenomic/FastQ/
     project="$library"
 
-    Trimmomatic PE -threads 16 "$reads_for" "$reads_rev" "$out_fold"/"$project"_cleaned_R1.fq.gz "$out_fold"/"$project"_unpaired_R1.fq.gz "$out_fold"/"$project"_cleaned_R2.fq.gz "$out_fold"/"$project"_unpaired_R2.fq.gz ILLUMINACLIP:TruSeq3_PE_adapt.fa:2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:36
+    Trimmomatic PE -threads 32 "$reads_for" "$reads_rev" "$out_fold"/"$project"_cleaned_R1.fq.gz "$out_fold"/"$project"_unpaired_R1.fq.gz "$out_fold"/"$project"_cleaned_R2.fq.gz "$out_fold"/"$project"_unpaired_R2.fq.gz ILLUMINACLIP:TruSeq3_PE_adapt.fa:2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:36
 
 done
 ```
@@ -103,10 +103,10 @@ do
     reads_rev=chipfilter_metagenomic/FastQ/"$library"_cleaned_R2.fq.gz
     index=chipfilter_metagenomic/index/mock_V2
 
-    bowtie2 --very-sensitive-local -p 24  -x "$index" -U "$reads_for" -S "$project"/temp/for.sam
+    bowtie2 --very-sensitive-local -p 32  -x "$index" -U "$reads_for" -S "$project"/temp/for.sam
     samtools view -S -b "$project"/temp/for.sam > "$project"/temp/for_"$lib".bam
 
-    bowtie2 --very-sensitive-local -p 24  -x "$index" -U "$reads_rev" -S "$project"/temp/rev.sam
+    bowtie2 --very-sensitive-local -p 32  -x "$index" -U "$reads_rev" -S "$project"/temp/rev.sam
     samtools view -S -b "$project"/temp/rev.sam > "$project"/temp/rev_"$lib".bam
 
     samtools sort "$project"/temp/for_"$lib".bam -o "$project"/temp/for_"$lib"_sort.bam
