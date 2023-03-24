@@ -99,8 +99,8 @@ project=chipfilter_metagenomic/
 
 for lib in $(ls "$project"/FastQ/ | sed 's/_R/ /' | grep "cleaned" | awk '{print $1}' | sort -u)
 do
-    reads_for=chipfilter_metagenomic/FastQ/"$library"_cleaned_R1.fq.gz
-    reads_rev=chipfilter_metagenomic/FastQ/"$library"_cleaned_R2.fq.gz
+    reads_for=chipfilter_metagenomic/FastQ/"$library"_R1.fq.gz
+    reads_rev=chipfilter_metagenomic/FastQ/"$library"_R2.fq.gz
     index=chipfilter_metagenomic/index/mock_V2
 
     bowtie2 --very-sensitive-local -p 32  -x "$index" -U "$reads_for" -S "$project"/temp/for.sam
